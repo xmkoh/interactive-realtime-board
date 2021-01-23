@@ -55,6 +55,9 @@ class Board extends React.Component {
         var sketch_style = getComputedStyle(sketch);
         canvas.width = parseInt(sketch_style.getPropertyValue('width'));
         canvas.height = parseInt(sketch_style.getPropertyValue('height'));
+        // canvas.width = 1280;
+        // canvas.height = 1280;
+        
 
         var mouse = {x: 0, y: 0};
         var last_mouse = {x: 0, y: 0};
@@ -68,6 +71,14 @@ class Board extends React.Component {
             mouse.y = e.pageY - this.offsetTop;
         }, false);
 
+        canvas.addEventListener("touchmove", function (e) {
+            let touch = e.touches[0];
+            last_mouse.x = touch.clientX - this.offsetLeft;
+            last_mouse.y = touch.clientY - this.offsetTop ;
+            mouse.x = touch.pageX - this.offsetLeft;
+            mouse.y = touch.pageY - this.offsetTop;
+          }, false);
+
 
         /* Drawing on Paint App */
         ctx.lineWidth = this.props.size;
@@ -79,13 +90,25 @@ class Board extends React.Component {
             canvas.addEventListener('mousemove', onPaint, false);
         }, false);
 
-        canvas.addEventListener('click', function() {
+        canvas.addEventListener('touchstart', function(e) {
+            canvas.addEventListener('touchmove', onPaint, false);
+        }, false);
+
+
+        canvas.addEventListener('click', function(e) {
+            canvas.removeEventListener('mousemove', onPaint, false);
+            onPaint();
+        }, false);
+
+        canvas.addEventListener('touchend', function(e) {
             canvas.removeEventListener('mousemove', onPaint, false);
             onPaint();
         }, false);
 
         var root = this;
-        var onPaint = function() {
+        var onPaint = function(e) {
+            // e.preventDefault();
+            // e.stopPropagation();
             ctx.beginPath();
             ctx.moveTo(last_mouse.x, last_mouse.y);
             ctx.lineTo(mouse.x, mouse.y);
@@ -96,7 +119,7 @@ class Board extends React.Component {
             root.timeout = setTimeout(function(){
                 var base64ImageData = canvas.toDataURL("image/png");
                 root.socket.emit("canvas-data", base64ImageData);
-            }, 100)
+            }, 500)
         };
     }
 

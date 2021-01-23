@@ -15,11 +15,11 @@ app.get('*', function(request, response) {
 response.sendFile(path.resolve(__dirname, '../ui/build', 'index.html'));
 });
   
-
 app.use(require("cors")())
 
-let tempImage;
 
+// NOT WORKING
+let tempImage;
 io.on('connection', (socket)=> {
       console.log('User Online');
       socket.on('canvas-data', (data)=> {

@@ -91,20 +91,20 @@ class Container extends React.Component {
                     </div>
 
                     <div className="pencil-sizes-container toolbox-group">
-                        <label for="size8">
+                        <label>
                             <input id="size8" className="custom-check-or-radio line-width-button" onChange={() => this.changeSize(8)} type="radio" name="line-width" />
                             <div className="line-width-button-content">
                                 <div style={{ height: '8px', width: '8px' }} className="dot"></div>
                             </div>
                         </label>
-                        <label for="size16">
+                        <label>
                         <input id="size16" className="custom-check-or-radio line-width-button" onChange={() => this.changeSize(16)} type="radio" name="line-width" />
                         <div
                             className="line-width-button-content">
                             <div style={{ height: '16px', width: '16px' }} className="dot"></div>
                         </div>
                         </label>
-                        <label for="size24">
+                        <label>
                         <input id="size24" className="custom-check-or-radio line-width-button" onChange={() => this.changeSize(24)} type="radio" name="line-width" />
                         <div
                             
