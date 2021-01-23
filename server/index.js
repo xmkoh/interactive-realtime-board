@@ -6,6 +6,9 @@ const io = require('socket.io')(server, {
       }
     });
 
+// Priority serve any static files.
+app.use(express.static(path.resolve(__dirname, '../ui/build')));
+
 app.use(require("cors")())
 
 let tempImage;
