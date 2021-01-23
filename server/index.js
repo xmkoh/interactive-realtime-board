@@ -8,6 +8,11 @@ const io = require('socket.io')(server, {
 
 // Priority serve any static files.
 app.use(express.static(path.resolve(__dirname, '../ui/build')));
+// All remaining requests return the React app, so it can handle routing.
+app.get('*', function(request, response) {
+response.sendFile(path.resolve(__dirname, '../ui/build', 'index.html'));
+});
+  
 
 app.use(require("cors")())
 
