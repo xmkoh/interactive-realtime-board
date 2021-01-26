@@ -6,8 +6,8 @@ import './style.css';
 class Board extends React.Component {
 
     timeout;
-    // socket =io.connect("https://quiet-ridge-74497.herokuapp.com/", {secure: true});
-    socket =io.connect("http://localhost:5000/", {secure: true});
+    socket =io.connect("https://quiet-ridge-74497.herokuapp.com/", {secure: true});
+    // socket =io.connect("http://localhost:5000/", {secure: true});
 
     ctx;
     isDrawing = false;
