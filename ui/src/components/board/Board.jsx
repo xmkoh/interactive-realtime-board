@@ -38,7 +38,7 @@ class Board extends React.Component {
                     root.isDrawing = false;
                 };
                 image.src = data;
-            }, 100)
+            }, 500)
         })
     }
 
