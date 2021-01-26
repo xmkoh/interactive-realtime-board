@@ -85,14 +85,22 @@ input[type="button"]:hover,
 .line-width-button-content:hover,
 #color-picker:hover {
     /** Important insures it won't be prevented by a 'transparent' main color*/
-    background-color: rgb(200, 200, 200) !important;
+    /* background-color: rgb(200, 200, 200) !important; */
+    outline: auto 1px;
+    outline-color: #000;
+    outline-style: auto;
+    outline-width: 1px;
 }
 
 button:active,
 input[type="button"]:active,
 #color-picker:active {
     /** Important insures it won't be prevented by a 'transparent' main color*/
-    background-color: rgb(200, 200, 200) !important;
+    /* background-color: rgb(200, 200, 200) !important; */
+    outline: auto 1px;
+    outline-color: #000;
+    outline-style: auto;
+    outline-width: 1px;
 }
 
 

@@ -29,6 +29,9 @@ class Board extends React.Component {
                 var ctx = canvas.getContext('2d');
                 if(root.isDrawing) return;
                 root.isDrawing = true;
+                if(data === 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=='){
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                }
                 clearInterval(interval);
                 image.onload = function() {
                     ctx.drawImage(image, 0, 0, canvas.width, canvas.width);
