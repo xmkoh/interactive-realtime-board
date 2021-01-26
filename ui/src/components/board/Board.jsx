@@ -6,7 +6,8 @@ import './style.css';
 class Board extends React.Component {
 
     timeout;
-    socket =io.connect("https://quiet-ridge-74497.herokuapp.com/", {secure: true});
+    // socket =io.connect("https://quiet-ridge-74497.herokuapp.com/", {secure: true});
+    socket =io.connect("http://localhost:5000/", {secure: true});
 
     ctx;
     isDrawing = false;
@@ -23,22 +24,18 @@ class Board extends React.Component {
             var root = this;
             root.component = component
             var interval = setInterval(function(){
-                if(root.isDrawing) return;
-                root.isDrawing = true;
-                clearInterval(interval);
                 var image = new Image();
                 var canvas = document.querySelector('#board');
                 var ctx = canvas.getContext('2d');
-                console.log("RECEIVING")
+                if(root.isDrawing) return;
+                root.isDrawing = true;
+                clearInterval(interval);
                 image.onload = function() {
                     ctx.drawImage(image, 0, 0, canvas.width, canvas.width);
                     root.isDrawing = false;
                 };
                 image.src = data;
-                if (data==='clear-data'){
-                    console.log("CLEARING")
-                }
-            }, 100)
+            }, 500)
         })
     }
 
@@ -47,7 +44,7 @@ class Board extends React.Component {
         this.ctx = canvas.getContext('2d');
         this.ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-        this.socket.emit("canvas-data", 'clear-data');
+        this.socket.emit("canvas-data", 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==');
     }
       
     componentDidMount() {
@@ -148,7 +145,6 @@ class Board extends React.Component {
             root.timeout = setTimeout(function(){
                 var base64ImageData = canvas.toDataURL("image/png");
                 root.socket.emit("canvas-data", base64ImageData);
-                console.log("EMITTING")
             }, 100)
         };
     }
