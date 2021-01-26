@@ -128,13 +128,11 @@ class Container extends React.Component {
                             <div style={{ height: '32px', width: '32px' }} className="dot"></div>
                         </div>
                     </label>
-                </div>
-
-                <button className="canvas-button toolbox-group" style={{ fontsize: '2rem' }}
-                    onClick={(e) => this.clearCanvasAndSendEvent(e)}
-                    alt="Clear the canvas" title="Clear the canvas">🗑
+                    <button className="canvas-button" style={{ fontSize: '2rem' }}
+                        onClick={(e) => this.clearCanvasAndSendEvent(e)}
+                        alt="Clear the canvas" title="Clear the canvas">🗑
                     </button>
-
+                </div>
             </div>
         )
     }

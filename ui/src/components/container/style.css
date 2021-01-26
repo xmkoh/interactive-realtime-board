@@ -3,11 +3,13 @@
     width: 100%;
     height: 100%;
     background: linear-gradient(45deg, #03A9F4, #4CAF50);
+
 }
 
 .tools-section {
     text-align: center;
     display: flex;
+    align-items: center; justify-content: center;
 }
 
 .toolbox-group {
@@ -37,6 +39,7 @@
         margin: auto;
         margin-top: 1%;
         background: white;
+        margin-bottom: 1%;
     }
 }
 
@@ -64,7 +67,7 @@
 
 #color-picker {
     border: 0;
-    background-color: rgb(218, 218, 218);
+    background-color: transparent;
     height: 50px;
     width: 50px;
     padding: 0;
@@ -94,6 +97,8 @@ input[type="button"]:active,
 
 .pencil-sizes-container {
     display: flex;
+    align-items: center; 
+    justify-content: center;
 }
 
 .custom-check-or-radio {
@@ -121,4 +126,13 @@ input[type="button"]:active,
 .dot {
     background-color: black;
     border-radius: 50%;
+}
+
+.canvas-button {
+    height: 50px;
+    width: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-width: 0
 }
