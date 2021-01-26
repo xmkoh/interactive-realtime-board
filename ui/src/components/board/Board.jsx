@@ -38,7 +38,7 @@ class Board extends React.Component {
                     root.isDrawing = false;
                 };
                 image.src = data;
-            }, 500)
+            }, 100)
         })
     }
 
@@ -81,19 +81,17 @@ class Board extends React.Component {
 
         /* Mouse Capturing Work */
         canvas.addEventListener('mousemove', function(e) {
-            last_mouse.x = mouse.x;
-            last_mouse.y = mouse.y;
-
             mouse.x = e.pageX - this.offsetLeft;
             mouse.y = e.pageY - this.offsetTop;
         }, false);
 
         canvas.addEventListener("touchmove", function (e) {
             let touch = e.touches[0];
-            mouse.x = touch.clientX - this.offsetLeft;
-            mouse.y = touch.clientY - this.offsetTop;
-            last_mouse.x = mouse.x;
-            last_mouse.y = mouse.y;
+            var mouseEvent = new MouseEvent("mousemove", {
+                clientX: touch.clientX,
+                clientY: touch.clientY - this.offsetTop
+              });
+            canvas.dispatchEvent(mouseEvent);
           }, false);
 
 
@@ -104,16 +102,21 @@ class Board extends React.Component {
         ctx.strokeStyle = this.props.color;
 
         canvas.addEventListener('mousedown', function(e) {
+            last_mouse.x = mouse.x;
+            last_mouse.y = mouse.y;
             canvas.addEventListener('mousemove', onPaint, false);
         }, false);
 
         canvas.addEventListener('touchstart', function(e) {
             e.preventDefault();
-            e.stopPropagation();
             let touch = e.touches[0];
-            last_mouse.x = touch.clientX - this.offsetLeft;
-            last_mouse.y = touch.clientY - this.offsetTop ;
-            canvas.addEventListener('touchmove', onPaint, false);
+            mouse.x = touch.clientX - this.offsetLeft;
+            mouse.y = touch.clientY - this.offsetTop;
+            var mouseEvent = new MouseEvent("mousedown", {
+                clientX: touch.clientX - this.offsetLeft,
+                clientY: touch.clientY - this.offsetTop
+              });
+            canvas.dispatchEvent(mouseEvent);
         }, false);
 
 
@@ -123,8 +126,9 @@ class Board extends React.Component {
         }, false);
 
         canvas.addEventListener('touchend', function(e) {
-            canvas.removeEventListener('mousemove', onPaint, false);
-            onPaint();
+            e.preventDefault();
+            var mouseEvent = new MouseEvent("click", {});
+            canvas.dispatchEvent(mouseEvent);
         }, false);
 
         var root = this;
@@ -136,6 +140,9 @@ class Board extends React.Component {
             ctx.lineTo(mouse.x, mouse.y);
             ctx.closePath();
             ctx.stroke();
+            last_mouse.x =  mouse.x
+            last_mouse.y =  mouse.y
+
 
             if(root.timeout !== undefined) clearTimeout(root.timeout);
             root.timeout = setTimeout(function(){
