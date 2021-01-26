@@ -108,6 +108,8 @@ class Board extends React.Component {
         }, false);
 
         canvas.addEventListener('touchstart', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
             let touch = e.touches[0];
             last_mouse.x = touch.clientX - this.offsetLeft;
             last_mouse.y = touch.clientY - this.offsetTop ;
