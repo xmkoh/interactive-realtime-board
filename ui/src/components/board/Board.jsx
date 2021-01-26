@@ -13,14 +13,15 @@ class Board extends React.Component {
 
     constructor(props) {
         super(props);
-
+    
         this.socket.on("connect", function(){
-            console.log("CONNECTED");
+            // console.log("CONNECTED");
         })
 
+        var component = this;
         this.socket.on("canvas-data", function(data){
-
             var root = this;
+            root.component = component
             var interval = setInterval(function(){
                 if(root.isDrawing) return;
                 root.isDrawing = true;
@@ -28,8 +29,12 @@ class Board extends React.Component {
                 var image = new Image();
                 var canvas = document.querySelector('#board');
                 var ctx = canvas.getContext('2d');
+                if (data==='clear-data'){
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    return
+                }
                 image.onload = function() {
-                    ctx.drawImage(image, 0, 0);
+                    ctx.drawImage(image, 0, 0, canvas.width, canvas.width);
                     root.isDrawing = false;
                 };
                 image.src = data;
@@ -37,9 +42,20 @@ class Board extends React.Component {
         })
     }
 
+    clearCanvas() {
+        var canvas = document.querySelector('#board');
+        this.ctx = canvas.getContext('2d');
+        this.ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        this.socket.emit("canvas-data", 'clear-data');
+    }
+      
     componentDidMount() {
+        var canvas = document.querySelector('#board');
+        this.ctx = canvas.getContext('2d');
         this.drawOnCanvas();
     }
+
 
     componentWillReceiveProps(newProps) {
         this.ctx.strokeStyle = newProps.color;
@@ -48,15 +64,16 @@ class Board extends React.Component {
 
     drawOnCanvas() {
         var canvas = document.querySelector('#board');
-        this.ctx = canvas.getContext('2d');
+        this.ctx = canvas.getContext('2d')
         var ctx = this.ctx;
 
         var sketch = document.querySelector('#sketch');
         var sketch_style = getComputedStyle(sketch);
         canvas.width = parseInt(sketch_style.getPropertyValue('width'));
-        canvas.height = parseInt(sketch_style.getPropertyValue('height'));
-        // canvas.width = 1280;
-        // canvas.height = 1280;
+        canvas.height = parseInt(sketch_style.getPropertyValue('width'));
+        canvas.width = canvas.clientWidth;
+        canvas.height = canvas.clientHeight;
+
         
 
         var mouse = {x: 0, y: 0};
@@ -73,10 +90,10 @@ class Board extends React.Component {
 
         canvas.addEventListener("touchmove", function (e) {
             let touch = e.touches[0];
-            last_mouse.x = touch.clientX - this.offsetLeft;
-            last_mouse.y = touch.clientY - this.offsetTop ;
-            mouse.x = touch.pageX - this.offsetLeft;
-            mouse.y = touch.pageY - this.offsetTop;
+            mouse.x = touch.clientX - this.offsetLeft;
+            mouse.y = touch.clientY - this.offsetTop;
+            last_mouse.x = mouse.x;
+            last_mouse.y = mouse.y;
           }, false);
 
 
@@ -91,6 +108,9 @@ class Board extends React.Component {
         }, false);
 
         canvas.addEventListener('touchstart', function(e) {
+            let touch = e.touches[0];
+            last_mouse.x = touch.clientX - this.offsetLeft;
+            last_mouse.y = touch.clientY - this.offsetTop ;
             canvas.addEventListener('touchmove', onPaint, false);
         }, false);
 
@@ -119,7 +139,7 @@ class Board extends React.Component {
             root.timeout = setTimeout(function(){
                 var base64ImageData = canvas.toDataURL("image/png");
                 root.socket.emit("canvas-data", base64ImageData);
-            }, 500)
+            }, 100)
         };
     }
 

@@ -30,14 +30,26 @@
     flex-direction: column;
 }
 
-
-.board-container {
-    width: 90%;
-    height: 90%;
-    margin: auto;
-    margin-top: 1%;
-    background: white;
+@media screen and (orientation:portrait) {
+    .board-container {
+        width: 90vw;
+        height: 90vw;
+        margin: auto;
+        margin-top: 1%;
+        background: white;
+    }
 }
+
+@media screen and (orientation:landscape) {
+    .board-container {
+        width: 90vh;
+        height: 90vh;
+        margin: auto;
+        margin-top: 1%;
+        background: white;
+    }
+}
+
 
 .color-button-row {
     display: flex;

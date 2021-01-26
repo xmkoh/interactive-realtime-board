@@ -26,16 +26,24 @@ class Container extends React.Component {
     }
 
     changeSize(pixel) {
-        console.log("CHANGE SIZE")
         this.setState({
             size: pixel
         })
+    }
+
+    clearCanvasAndSendEvent(e) {
+        //Avoid unnecessary traffic back to us.
+        this.board.clearCanvas();
+
     }
 
     render() {
 
         return (
             <div className="container">
+                <div className="board-container">
+                    <Board ref={(ref) => this.board=ref } color={this.state.color} size={this.state.size}/>
+                </div>
                 <div className="tools-section">
                     Select Brush Color : &nbsp;
                     <input className="toolbox-group" type="color" id="color-picker" value={this.state.color} onChange={this.changeColor.bind(this)} />
@@ -98,36 +106,37 @@ class Container extends React.Component {
                             </div>
                         </label>
                         <label>
-                        <input id="size16" className="custom-check-or-radio line-width-button" onChange={() => this.changeSize(16)} type="radio" name="line-width" />
-                        <div
-                            className="line-width-button-content">
-                            <div style={{ height: '16px', width: '16px' }} className="dot"></div>
-                        </div>
+                            <input id="size16" className="custom-check-or-radio line-width-button" onChange={() => this.changeSize(16)} type="radio" name="line-width" />
+                            <div
+                                className="line-width-button-content">
+                                <div style={{ height: '16px', width: '16px' }} className="dot"></div>
+                            </div>
                         </label>
                         <label>
-                        <input id="size24" className="custom-check-or-radio line-width-button" onChange={() => this.changeSize(24)} type="radio" name="line-width" />
-                        <div
-                            
-                            className="line-width-button-content">
-                            <div style={{ height: '24px', width: '24px' }} className="dot"></div>
-                        </div>
+                            <input id="size24" className="custom-check-or-radio line-width-button" onChange={() => this.changeSize(24)} type="radio" name="line-width" />
+                            <div
+
+                                className="line-width-button-content">
+                                <div style={{ height: '24px', width: '24px' }} className="dot"></div>
+                            </div>
                         </label>
-                        <label for="size32">
-                        <input id="size32" className="custom-check-or-radio line-width-button" onChange={() => this.changeSize(32)} type="radio" name="line-width" />
-                        <div
-                            
-                            className="line-width-button-content">
-                            <div style={{ height: '32px', width: '32px' }} className="dot"></div>
-                        </div>
+                        <label>
+                            <input id="size32" className="custom-check-or-radio line-width-button" onChange={() => this.changeSize(32)} type="radio" name="line-width" />
+                            <div
+
+                                className="line-width-button-content">
+                                <div style={{ height: '32px', width: '32px' }} className="dot"></div>
+                            </div>
                         </label>
                     </div>
 
+                    <button className="canvas-button toolbox-group" style={{fontsize: '2rem'}}
+                            onClick= {(e) => this.clearCanvasAndSendEvent(e)}
+                            alt="Clear the canvas" title="Clear the canvas">🗑
+                    </button>
 
                 </div>
 
-                <div className="board-container">
-                    <Board color={this.state.color} size={this.state.size}></Board>
-                </div>
             </div>
         )
     }
