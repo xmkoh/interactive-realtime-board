@@ -42,10 +42,9 @@ class Container extends React.Component {
         return (
             <div className="container">
                 <div className="board-container">
-                    <Board ref={(ref) => this.board=ref } color={this.state.color} size={this.state.size}/>
+                    <Board ref={(ref) => this.board = ref} color={this.state.color} size={this.state.size} />
                 </div>
                 <div className="tools-section">
-                    Select Brush Color : &nbsp;
                     <input className="toolbox-group" type="color" id="color-picker" value={this.state.color} onChange={this.changeColor.bind(this)} />
                     <div className="color-picker-container toolbox-group">
                         <div className="color-button-row">
@@ -97,45 +96,44 @@ class Container extends React.Component {
                                 onClick={() => this.setColor('#63300d')}></button>
                         </div>
                     </div>
-
-                    <div className="pencil-sizes-container toolbox-group">
-                        <label>
-                            <input id="size8" className="custom-check-or-radio line-width-button" onChange={() => this.changeSize(8)} type="radio" name="line-width" />
-                            <div className="line-width-button-content">
-                                <div style={{ height: '8px', width: '8px' }} className="dot"></div>
-                            </div>
-                        </label>
-                        <label>
-                            <input id="size16" className="custom-check-or-radio line-width-button" onChange={() => this.changeSize(16)} type="radio" name="line-width" />
-                            <div
-                                className="line-width-button-content">
-                                <div style={{ height: '16px', width: '16px' }} className="dot"></div>
-                            </div>
-                        </label>
-                        <label>
-                            <input id="size24" className="custom-check-or-radio line-width-button" onChange={() => this.changeSize(24)} type="radio" name="line-width" />
-                            <div
-
-                                className="line-width-button-content">
-                                <div style={{ height: '24px', width: '24px' }} className="dot"></div>
-                            </div>
-                        </label>
-                        <label>
-                            <input id="size32" className="custom-check-or-radio line-width-button" onChange={() => this.changeSize(32)} type="radio" name="line-width" />
-                            <div
-
-                                className="line-width-button-content">
-                                <div style={{ height: '32px', width: '32px' }} className="dot"></div>
-                            </div>
-                        </label>
-                    </div>
-
-                    <button className="canvas-button toolbox-group" style={{fontsize: '2rem'}}
-                            onClick= {(e) => this.clearCanvasAndSendEvent(e)}
-                            alt="Clear the canvas" title="Clear the canvas">🗑
-                    </button>
-
                 </div>
+
+                <div className="pencil-sizes-container toolbox-group">
+                    <label>
+                        <input id="size8" className="custom-check-or-radio line-width-button" onChange={() => this.changeSize(8)} type="radio" name="line-width" />
+                        <div className="line-width-button-content">
+                            <div style={{ height: '8px', width: '8px' }} className="dot"></div>
+                        </div>
+                    </label>
+                    <label>
+                        <input id="size16" className="custom-check-or-radio line-width-button" onChange={() => this.changeSize(16)} type="radio" name="line-width" />
+                        <div
+                            className="line-width-button-content">
+                            <div style={{ height: '16px', width: '16px' }} className="dot"></div>
+                        </div>
+                    </label>
+                    <label>
+                        <input id="size24" className="custom-check-or-radio line-width-button" onChange={() => this.changeSize(24)} type="radio" name="line-width" />
+                        <div
+
+                            className="line-width-button-content">
+                            <div style={{ height: '24px', width: '24px' }} className="dot"></div>
+                        </div>
+                    </label>
+                    <label>
+                        <input id="size32" className="custom-check-or-radio line-width-button" onChange={() => this.changeSize(32)} type="radio" name="line-width" />
+                        <div
+
+                            className="line-width-button-content">
+                            <div style={{ height: '32px', width: '32px' }} className="dot"></div>
+                        </div>
+                    </label>
+                </div>
+
+                <button className="canvas-button toolbox-group" style={{ fontsize: '2rem' }}
+                    onClick={(e) => this.clearCanvasAndSendEvent(e)}
+                    alt="Clear the canvas" title="Clear the canvas">🗑
+                    </button>
 
             </div>
         )
