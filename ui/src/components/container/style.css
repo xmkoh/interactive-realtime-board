@@ -34,8 +34,8 @@
 
 @media screen and (orientation:portrait) {
     .board-container {
-        width: 90vw;
-        height: 90vw;
+        width: 90vh;
+        height: 90vh;
         margin: auto;
         margin-top: 1%;
         background: white;
@@ -45,11 +45,12 @@
 
 @media screen and (orientation:landscape) {
     .board-container {
-        width: 90vh;
-        height: 90vh;
+        width: 70vh;
+        height: 70vh;
         margin: auto;
         margin-top: 1%;
         background: white;
+        margin-bottom: 1%;
     }
 }
 

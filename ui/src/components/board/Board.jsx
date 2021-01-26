@@ -29,15 +29,15 @@ class Board extends React.Component {
                 var image = new Image();
                 var canvas = document.querySelector('#board');
                 var ctx = canvas.getContext('2d');
-                if (data==='clear-data'){
-                    ctx.clearRect(0, 0, canvas.width, canvas.height);
-                    return
-                }
+                console.log("RECEIVING")
                 image.onload = function() {
                     ctx.drawImage(image, 0, 0, canvas.width, canvas.width);
                     root.isDrawing = false;
                 };
                 image.src = data;
+                if (data==='clear-data'){
+                    console.log("CLEARING")
+                }
             }, 100)
         })
     }
@@ -148,6 +148,7 @@ class Board extends React.Component {
             root.timeout = setTimeout(function(){
                 var base64ImageData = canvas.toDataURL("image/png");
                 root.socket.emit("canvas-data", base64ImageData);
+                console.log("EMITTING")
             }, 100)
         };
     }

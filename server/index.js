@@ -24,7 +24,9 @@ io.on('connection', (socket)=> {
       console.log('User Online');
       socket.on('canvas-data', (data)=> {
             socket.broadcast.emit('canvas-data', data);
-            tempImage = data;
+            if(data!== 'clear-data'){
+                  tempImage = data;
+            }
       })
       socket.broadcast.emit('canvas-data', tempImage)
 })
