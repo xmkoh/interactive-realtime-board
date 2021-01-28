@@ -23,14 +23,13 @@ app.use(require("cors")())
 let tempImage = {};
 io.on('connection', (socket) => {
       socket.on('join-room', (data) => {
-            console.log(data);
             joinUser(socket.id, data.username, data.roomName);
-
             socket.join(data.roomName);
             if (tempImage[data.roomName]) {
                   console.log("HEHE")
                   io.to(data.roomName).emit('canvas-data', tempImage[data.roomName]);
             }
+
       });
 
       socket.on('canvas-data', (data) => {
@@ -42,7 +41,6 @@ io.on('connection', (socket) => {
 
       socket.on("disconnect", () => {
             const user = removeUser(socket.id);
-            console.log(user);
             if (user) {
                   console.log(user.username + ' has left');
             }

@@ -35,17 +35,16 @@ class Lobby extends React.Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        if (!this.state.room) {
-            var roomID = niceware.generatePassphrase(4).join('-');
-            this.setState({ room: roomID })
+        let roomID = this.state.room ;
+        let name = this.state.displayname;
+        if (!roomID) {
+            roomID = niceware.generatePassphrase(4).join('-');
         }
-        if (!this.state.displayname) {
-            var name =  niceware.generatePassphrase(2).join('-');
-            this.setState({ displayname: name })
+        if (!name) {
+            name =  niceware.generatePassphrase(2).join('-');
         }
-        // alert('A name was submitted: ' + this.state.displayname);
-        this.socket.emit("join-room", { username: this.state.displayname, roomName: this.state.room })
-        this.setState({ showNew: false })
+
+        this.setState({room: roomID,  displayname: name, showNew: false }, ()=>this.socket.emit("join-room", { username: this.state.displayname, roomName: this.state.room }))
     }
 
     render() {

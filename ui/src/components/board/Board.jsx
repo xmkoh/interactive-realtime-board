@@ -17,7 +17,6 @@ class Board extends React.Component {
             var root = this;
             root.component = component
             var interval = setInterval(function(){
-                console.log(root.isDrawing)
                 var image = new Image();
                 var canvas = document.querySelector('#board');
                 var ctx = canvas.getContext('2d');
