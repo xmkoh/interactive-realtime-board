@@ -14,7 +14,7 @@ class Lobby extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = { displayname: '', room: '' , showNew: true};
+        this.state = { displayname: '', room: '' , showNew: false};
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -52,7 +52,6 @@ class Lobby extends React.Component {
         return (
             <div className="parent">
                 <div id="map">
-                    <Container ref={(ref) => this.container = ref} socket={this.socket} />
                     {this.state.showNew ? (
                         <div id="controls" className="card card-body d-flew flex-col align-items-center">
                             <h4>Create / Join a Room</h4>
@@ -61,34 +60,22 @@ class Lobby extends React.Component {
                                     <span className="input-group-text">Display Name</span>
                                 </div>
                                 <input name="displayname" type="text" className="form-control" value={this.state.displayname} onChange={this.handleChange}
-                                    placeholder="your display name - shown to all users in the room" />
+                                     />
                             </div>
                             <div className="input-group mb-3">
                                 <div className="input-group-prepend">
                                     <span className="input-group-text">Room ID</span>
                                 </div>
                                 <input name="room" type="text" className="form-control" value={this.state.room} onChange={this.handleChange}
-                                    placeholder="leave this empty if creating a room" />
+                                    placeholder="Leave empty to create room" />
                             </div>
                             <div className="d-flex flex-row">
                                 <button onClick={this.handleSubmit} type="button" className="btn btn-primary btn-lg mx-2">
-                                    Create/Join Room</button>
+                                    Create / Join Room</button>
                             </div>
                         </div>)
                         : (<div id="roomInfo"><span className="input-group-text">Room ID: {this.state.room}</span></div>) }
-                </div>
-
-                <div className="modal fade" id="modal" tabIndex="-1" role="dialog" data-backdrop="static">
-                    <div className="modal-dialog modal-dialog-centered" role="document">
-                        <div className="modal-content">
-                            <div className="modal-body">
-
-                            </div>
-                            <div className="modal-footer">
-                                <button type="button" className="btn btn-primary" data-dismiss="modal">Okay</button>
-                            </div>
-                        </div>
-                    </div>
+                        <Container ref={(ref) => this.container = ref} socket={this.socket} />
                 </div>
             </div>
         )
