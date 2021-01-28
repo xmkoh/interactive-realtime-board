@@ -13,7 +13,12 @@ function getRoom(id) {
   return users.find(item => {
     return item.socketID === id
  }).roomname
- 
+}
+
+function getUsername(id) {
+  return users.find(item => {
+    return item.socketID === id
+ }).username
 }
 
 function removeUser(id) {
@@ -23,4 +28,4 @@ function removeUser(id) {
     return users.splice(index, 1)[0];
   }
 }
-module.exports = { joinUser, removeUser , getRoom}
+module.exports = { joinUser, removeUser , getRoom, getUsername}

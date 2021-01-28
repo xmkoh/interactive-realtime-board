@@ -1,7 +1,7 @@
 import React from 'react';
 import Board from '../board/Board';
-
 import './style.css';
+import Chatbox from '../chat/Chatbox'
 
 class Container extends React.Component {
     constructor(props) {
@@ -134,6 +134,7 @@ class Container extends React.Component {
                         alt="Clear the canvas" title="Clear the canvas">🗑
                     </button>
                 </div>
+                <Chatbox socket={this.socket}/>
             </div>
         )
     }

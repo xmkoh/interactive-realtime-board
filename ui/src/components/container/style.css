@@ -41,8 +41,8 @@
 
 @media screen and (orientation:landscape) {
     .board-container {
-        width: 70vh;
-        height: 70vh;
+        width: 60vh;
+        height: 60vh;
         margin: auto;
         margin-top: 1%;
         background: white;

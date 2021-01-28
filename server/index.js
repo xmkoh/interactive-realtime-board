@@ -7,7 +7,7 @@ const io = require('socket.io')(server, {
             origin: '*',
       }
 });
-const { joinUser, removeUser, getRoom } = require('./users');
+const { joinUser, removeUser, getRoom , getUsername} = require('./users');
 
 // Priority serve any static files.
 app.use(express.static(path.resolve(__dirname, '../ui/build')));
@@ -26,7 +26,6 @@ io.on('connection', (socket) => {
             joinUser(socket.id, data.username, data.roomName);
             socket.join(data.roomName);
             if (tempImage[data.roomName]) {
-                  console.log("HEHE")
                   io.to(data.roomName).emit('canvas-data', tempImage[data.roomName]);
             }
 
@@ -34,9 +33,15 @@ io.on('connection', (socket) => {
 
       socket.on('canvas-data', (data) => {
             let room = getRoom(socket.id);
-            console.log("Sending to", room)
             io.to(room).emit('canvas-data', data);
             tempImage[room] = data;
+      });
+
+      socket.on('chatMsg', (data) => {
+            let room = getRoom(socket.id);
+            let username = getUsername(socket.id)
+            data.username = username
+            io.to(room).emit('chatMsg', data);
       });
 
       socket.on("disconnect", () => {
