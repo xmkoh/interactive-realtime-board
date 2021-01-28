@@ -14,7 +14,7 @@ class Lobby extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = { displayname: '', room: '' , showNew: false};
+        this.state = { displayname: '', room: '' , showNew: true};
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
