@@ -1,29 +1,23 @@
 import React from 'react';
-import io from 'socket.io-client';
 
 import './style.css';
 
 class Board extends React.Component {
 
     timeout;
-    socket =io.connect("https://quiet-ridge-74497.herokuapp.com/", {secure: true});
-    // socket =io.connect("http://localhost:5000/", {secure: true});
-
     ctx;
     isDrawing = false;
 
     constructor(props) {
         super(props);
-    
-        this.socket.on("connect", function(){
-            // console.log("CONNECTED");
-        })
+        this.socket = this.props.socket
 
         var component = this;
         this.socket.on("canvas-data", function(data){
             var root = this;
             root.component = component
             var interval = setInterval(function(){
+                console.log(root.isDrawing)
                 var image = new Image();
                 var canvas = document.querySelector('#board');
                 var ctx = canvas.getContext('2d');

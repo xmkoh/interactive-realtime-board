@@ -6,7 +6,8 @@ import './style.css';
 class Container extends React.Component {
     constructor(props) {
         super(props);
-
+        this.socket = this.props.socket
+        
         this.state = {
             color: "#000000",
             size: "8"
@@ -42,7 +43,7 @@ class Container extends React.Component {
         return (
             <div className="container">
                 <div className="board-container">
-                    <Board ref={(ref) => this.board = ref} color={this.state.color} size={this.state.size} />
+                    <Board ref={(ref) => this.board = ref} color={this.state.color} size={this.state.size} socket={this.socket} />
                 </div>
                 <div className="tools-section">
                     <input className="toolbox-group" type="color" id="color-picker" value={this.state.color} onChange={this.changeColor.bind(this)} />
