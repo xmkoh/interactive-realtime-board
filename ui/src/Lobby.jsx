@@ -8,8 +8,8 @@ import io from 'socket.io-client';
 
 class Lobby extends React.Component {
 
-    // socket = io.connect("https://quiet-ridge-74497.herokuapp.com/", {secure: true});
-    socket = io.connect("http://localhost:5000/", { secure: true });
+    socket = io.connect("https://quiet-ridge-74497.herokuapp.com/", {secure: true});
+    // socket = io.connect("http://localhost:5000/", { secure: true });
 
     constructor(props) {
         super(props);
@@ -36,10 +36,12 @@ class Lobby extends React.Component {
     handleSubmit(event) {
         event.preventDefault();
         if (!this.state.room) {
-            this.state.room = niceware.generatePassphrase(4).join('-');
+            var roomID = niceware.generatePassphrase(4).join('-');
+            this.setState({ room: roomID })
         }
         if (!this.state.displayname) {
-            this.state.displayname = niceware.generatePassphrase(2).join('-');
+            var name =  niceware.generatePassphrase(2).join('-');
+            this.setState({ displayname: name })
         }
         // alert('A name was submitted: ' + this.state.displayname);
         this.socket.emit("join-room", { username: this.state.displayname, roomName: this.state.room })
