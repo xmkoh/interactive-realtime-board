@@ -82,7 +82,7 @@ class Board extends React.Component {
             let touch = e.touches[0];
             var mouseEvent = new MouseEvent("mousemove", {
                 clientX: touch.clientX,
-                clientY: touch.clientY - this.offsetTop
+                clientY: touch.clientY
               });
             canvas.dispatchEvent(mouseEvent);
           }, false);

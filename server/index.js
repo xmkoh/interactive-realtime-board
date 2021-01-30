@@ -18,8 +18,6 @@ app.get('*', function (request, response) {
 
 app.use(require("cors")())
 
-
-// NOT WORKING
 let tempImage = {};
 io.on('connection', (socket) => {
       socket.on('join-room', (data) => {
@@ -28,6 +26,8 @@ io.on('connection', (socket) => {
             if (tempImage[data.roomName]) {
                   io.to(data.roomName).emit('canvas-data', tempImage[data.roomName]);
             }
+            let message = {msg: `${data.username} has joined`};
+            io.to(data.roomName).emit('chatMsg', message);
 
       });
 
@@ -41,15 +41,17 @@ io.on('connection', (socket) => {
             let room = getRoom(socket.id);
             let username = getUsername(socket.id)
             data.username = username
-            io.to(room).emit('chatMsg', data);
+            if (username && room){
+                  io.to(room).emit('chatMsg', data);
+            }
       });
 
       socket.on("disconnect", () => {
             const user = removeUser(socket.id);
             if (user) {
-                  console.log(user.username + ' has left');
+                  let message = {msg: `${user.username} has left`};
+                  io.to(user.roomname).emit('chatMsg', message);
             }
-            console.log("disconnected");
       });
 })
 

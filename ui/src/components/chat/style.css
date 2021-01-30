@@ -44,7 +44,7 @@ body {
   canvas {
     display: block;
     margin: auto;
-    margin-top: 50px;
+    margin-top: 1rem;
     border: 5px solid #b1bffa;
     border-radius: 10px;
     background: #ffffff;
@@ -99,7 +99,7 @@ body {
     overflow-x: hidden;
   }
   #chatbox-messages > div {
-    font-size: 110%;
+    font-size: 90%;
     height: auto;
     word-wrap: break-word;
     padding: 5px 10px;
@@ -112,7 +112,7 @@ body {
     margin: auto;
     width: 90%;
     height: 32px;
-    font-size: 120%;
+    font-size: 90%;
   }
   #stylepicker-container {
     margin: auto;

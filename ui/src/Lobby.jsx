@@ -3,7 +3,6 @@ import niceware from 'niceware';
 import './style.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import Container from './components/container/Container';
-import Chatbox from './components/chat/Chatbox'
 import io from 'socket.io-client';
 
 
@@ -24,6 +23,9 @@ class Lobby extends React.Component {
         });
     }
     
+    static getSocket(){
+        return this.socket;
+    }
 
     handleChange(event) {
         const target = event.target;

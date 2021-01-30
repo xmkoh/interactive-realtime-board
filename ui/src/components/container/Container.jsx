@@ -1,7 +1,7 @@
 import React from 'react';
 import Board from '../board/Board';
 import './style.css';
-import Chatbox from '../chat/Chatbox'
+import Chatbox from '../chat/Chatbox';
 
 class Container extends React.Component {
     constructor(props) {
