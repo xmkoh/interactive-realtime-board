@@ -8,7 +8,7 @@ import io from 'socket.io-client';
 
 class Lobby extends React.Component {
 
-    socket = io.connect("https://quiet-ridge-74497.herokuapp.com/", {secure: true});
+    socket = io.connect("https://realtime-interactive-board.herokuapp.com/", {secure: true});
     // socket = io.connect("http://localhost:5000/", { secure: true });
 
     constructor(props) {
