@@ -23,7 +23,7 @@ Open the application at https://realtime-interactive-board.herokuapp.com/.
 
 
 ## Creativity and Innovation :heavy_check_mark:
-As most collaboration have shifted virtually due to the ongoing pandemic, our realtime application would allow multiple parties to collaboratively design and share ideas using the realtime canvas and chatbox. Compared to sharing screens on video conferencing applications, our application promotes collaborative work (supports interaction of multiple parties on a single canvas) at a much lower bandwidth. The appplication is also made responsive for mobile use to provide convenience in drawing instead of using a mouse/touchpad. Individual rooms allow multiple groups to use the platform at a time. Overall, the application is made straightforward and easy to use.
+As most collaboration have shifted virtually due to the ongoing pandemic, our realtime application would allow multiple parties to collaboratively design and share ideas using the realtime canvas and chatbox. Compared to sharing screens on video conferencing applications, our application promotes collaborative work (supports interaction of multiple parties on a single canvas) at a much lower bandwidth. The application is also made responsive for mobile use to provide convenience in drawing instead of using a mouse/touchpad. Individual rooms allow multiple groups to use the platform at a time. Overall, the application is made straightforward and easy to use.
 
 ## Setting up the project :memo: 
 **Technical Considerations:** 
