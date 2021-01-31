@@ -11,7 +11,7 @@ The application is optimised for mobile devices - ditch your mouse and draw on y
 
 :link: Live demo: https://realtime-interactive-board.herokuapp.com/
 
-> This project is a submission for the [Realtime Apps IAP Workshop](https://realtime-apps-iap.github.io/) and uses WebSockets as a realtime component.
+> This project is a submission for the [Realtime Apps IAP Workshop](http://realtime-apps-iap.github.io/competition) and uses WebSockets as a realtime component.
 
 ## Getting Started :arrow_forward:
 Open the application at https://realtime-interactive-board.herokuapp.com/.
