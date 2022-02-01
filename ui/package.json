@@ -14,7 +14,7 @@
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-responsive-canvas": "^1.0.2",
-    "react-scripts": "4.0.1",
+    "react-scripts": "^4.0.1",
     "socket.io-client": "^3.1.0",
     "ts-node": "^9.1.1",
     "typescript": "^4.1.3",
